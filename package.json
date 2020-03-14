@@ -1,0 +1,16 @@
+{
+  "name": "webide",
+  "version": "1.0.0",
+  "description": "I'm trying to make a simple web based IDE",
+  "main": "servers/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^3.0.0",
+    "ejs": "^3.0.1",
+    "express": "^4.17.1"
+  }
+}
