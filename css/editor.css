@@ -1,4 +1,272 @@
-#editor {
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+body {
+  overflow: hidden;
+  margin: 0px;
   width: 100vw;
   height: 100vh;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 110px 1fr;
+  background-color: #e0e0e0;
+  grid-template-areas: 
+    "menu"
+    "editor";
+}
+header {
+  position: fixed;
+  top: 0px;
+  grid-area: menu;
+  display: grid;
+  grid-template-areas:
+    "logo  title"
+    "logo  menu"
+    "tools tools";
+  grid-template-columns: 60px 1fr;
+  grid-template-rows: 35px 25px 35px;
+  width: 100vw;
+  padding: 10px 10px 5px 10px;
+  color: #282830;
+  background-color: #e8e8e8;
+  box-shadow: 0px 0px 5px 5px #cccccc;
+  z-index: 2;
+}
+#logo-container {
+  grid-area: logo;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+#logo {
+  margin: 5px;
+  width: 50px;
+  height: 50px; 
+}
+#documentTitle, #titleTest {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+}
+#titleTest {
+  position: fixed;
+  top: -100%;
+  width: max-content;
+  max-width: calc(100% - 90px);
+  white-space: pre;
+}
+#documentTitle {
+  line-height: 20px;
+  background-color: transparent;
+  border-radius: 5px;
+  margin: 5px;
+  padding: 2.5px 7.5px;
+  border: none;
+  transition: box-shadow 500ms;
+}
+#documentTitle:hover, #documentTitle:focus {
+  box-shadow: 0px 0px 4px 4px #d0d0d0;
+}
+#menu {
+  font-family: Roboto, sans-serif;
+  grid-area: menu;
+  margin: 0px 5px;
+  display: flex;
+  flex-direction: row;
+}
+#menu .tab {
+  padding: 5px 7.5px;
+  font-size: 15px;
+  line-height: 15px;
+  border-radius: 3px;
+}
+#editor {
+  grid-area: editor;
+  overflow: auto;
+}
+.page {
+  width: 8.5in;
+  height: 11in;
+  background-color: white;
+  padding: 1in;
+  margin: 20px auto;
+  box-shadow: 0px 0px 5px 5px #d0d0d0
+}
+.neomorphismHover, .neomorphismInsetHover, .tab-menu > div > * {
+  box-shadow: none;
+  transition: box-shadow 500ms, background-color 500ms;
+}
+.neomorphism, .neomorphismHover:hover, input.neomorphismHover:focus, .tab-menu > div > :hover, .custom-select.open {
+  box-shadow: -3px -3px 3px #ffffff, 3px 3px 3px #cccccc;
+}
+.select1 .marker {
+  content: " ";
+  display: block;
+  background-color: #1654d0;
+  height: 2px;
+  transition: 500ms;
+}
+.select1 .marker {
+  position: absolute;
+}
+.neomorphismHover:not(input):active, .neomorphismHover.selected, .tab-menu > div > .button:active, .tab-menu > div > .button.selected {
+  box-shadow: inset -2.5px -2.5px 2.5px #ffffff, inset 2.5px 2.5px 2.5px #cccccc;
+}
+.neomorphismHover:not(input):active:hover, .neomorphismHover.selected:hover, .tab-menu > div > .button:active:hover, .tab-menu > div > .button.selected:hover {
+  background-color: #e0e0e0;
+}
+.neomorphismInset, .neomorphismInsetHover:hover, .neomorphismInsetHover:focus {
+  box-shadow: inset 5px 5px 5px #ffffff, inset -5px -5px 5px #cccccc;
+}
+[contenteditable="true"] {
+  outline: 0px solid transparent !important;
+}
+#menu .tab {
+  cursor: pointer;
+}
+#menu .tab::before {
+  content: attr(data-option);
+  text-transform: capitalize;
+}
+.tab-menu {
+  user-select: none;
+  display: none;
+  font-family: 'Times New Roman', Times, serif;
+  margin: 5px 0px 0px 10px;
+  color: #585858
+}
+.tab-menu > div:not(:last-child) {
+  margin-right: 5px;
+  border-right: 1px solid #aaaaaa;
+}
+.tab-menu.open {
+  display: flex;
+  flex-direction: row;
+}
+.tab-menu > div {
+  display: flex;
+  flex-direction: row;
+}
+.tab-menu > div > * {
+  height: 20px;
+  text-align: center;
+  margin-right: 5px;
+  padding: 5px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.tab-menu .button, .tab-menu .button-shape {
+  cursor: pointer;
+  width: 20px;
+  font-size: 20px;
+  line-height: 20px;
+}
+.underline {
+  text-decoration: underline;
+}
+#text-color-display {
+  height: 5px;
+  width: 100%;
+  background-color: black;
+}
+#align-left, #align-center, #align-right, #align-justify {
+  line-height: 2px;
+  font-size: 2px;
+  padding: 8px;
+  height: 14px;
+  width: 14px;
+}
+.text-align-long, .text-align-short {
+  height: 2px;
+  display: inline-block;
+  background-color: #585858;
+}
+.text-align-long:not(:last-child), .text-align-short:not(:last-child) {
+  margin-bottom: 2px;
+}
+.text-align-long {
+  width: 14px;
+}
+.text-align-short {
+  width: 10.5px;
+}
+#align-left {
+  text-align: left;
+}
+#align-center {
+  text-align: center;
+}
+#align-right {
+  text-align: right;
+}
+.custom-select {
+  padding: 0px !important;
+  height: 30px !important;
+  font-size: 14px;
+  line-height: 14px;
+  border-radius: 5px;
+  text-align: left;
+  height: 30px;
+  width: 60px;
+  font-family: Roboto, sans-serif;
+  overflow: visible !important;
+  display: grid;
+  grid-template-areas:
+    "display arrow"
+    "options options";
+  grid-template-rows: 30px max-content;
+  grid-template-columns: 45px 15px;
+  gap: 2px 0px;
+}
+.custom-select .display {
+  grid-area: display;
+  width: calc(100% - 10px);
+  height: 14px;
+  padding: 8px 5px;
+  float: left;
+  border-radius: 5px 0px 0px 5px;
+  background-color: #e8e8e8;
+}
+.custom-select input.display {
+  border: none;
+  background-color: transparent;
+  font-family: Roboto, sans-serif;
+}
+.custom-select .arrow-container {
+  grid-area: arrow;
+  width: 15px;
+  height: 30px;
+  position: relative;
+  border-radius: 0px 5px 5px 0px;
+  float: left;
+  background-color: #e8e8e8;
+}
+.custom-select .arrow {
+  display: block;
+  position: absolute;
+  top: 13px;
+  left: 1px;
+  width: 0px; 
+  height: 0px;
+  border-width: 4px;
+  border-style: solid;
+  border-color: gray transparent transparent transparent;
+  transition: 500ms;
+}
+.custom-select.open .arrow {
+  transform: rotate(180deg);
+  top: 9px;
+}
+.custom-select:not(.open) .options {
+  display: none;
+}
+.custom-select.open .options {
+  grid-area: options;
+  border-radius: 5px;
+  width: 100%;
+  color: #111111;
+  background-color: #f8f8f8;
+}
+.custom-select.open .options * {
+  text-align: left;
+  padding: 10px;
 }

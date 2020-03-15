@@ -4,7 +4,6 @@ const fs = require("fs");
 const chalk = require("chalk");
 
 function respond (res, data, status, type) {
-  console.log(data, type);
   res.status(status).type(type);
   res.write(data);
   res.end();
@@ -21,7 +20,7 @@ module.exports = (req, res) => {
   const type = path.extname(page);
   try {
     if (type) { // if not ejs
-      if (fs.existsSync(page)) respond(res, fs.readFileSync(page, "utf-8"), 200, type);
+      if (fs.existsSync(page)) respond(res, fs.readFileSync(page), 200, type);
       else res.status(404).end();
     }
     else {

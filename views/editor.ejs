@@ -1,12 +1,128 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="icon" href="/img/docs/D.png">
     <link rel="stylesheet" href="/css/editor.css">
+    <link rel="stylesheet" href="/css/tabMenu.css">
+    <script src="/js/JSPlus.js" type="application/javascript"></script>
     <script src="/js/editor.js" type="application/javascript" defer></script>
+    <script src="/js/editorFunctions.js" type="application/javascript" defer></script>
+    <script src="/js/editorInterface.js" type="application/javascript" defer></script>
+    <script src="/js/editorKeycodes.js" type="application/javascript" defer></script>
   </head>
   <body>
-    <div id="editor" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true">
-      Hello
+    <div id="titleTest"></div>
+    <header>
+      <div id="logo-container" class="neomorphism" data-option="">
+        <img id="logo" src="../img/docs/docs.png">
+      </div>
+      <input id="documentTitle" value="Untitled Document">
+      <div id="menu" class="select1">
+        <div class="tab selected" data-option="home"></div>
+        <div class="tab" data-option="file"></div>
+        <div class="tab" data-option="edit"></div>
+        <div class="tab" data-option="view"></div>
+        <div class="tab" data-option="insert"></div>
+        <div class="tab" data-option="layout"></div>
+        <div class="tab" data-option="help"></div>
+      </div>
+      <div id="home-menu" class="tab-menu open" data-for="menu" data-tabName="home">
+        <div>
+          <div id="undo" class="button">&#8617;</div>
+          <div id="redo" class="button">&#8618;</div>
+          <div id="print" class="button">&#128438;</div>
+        </div>
+        <div>
+          <div id="zoom" class="custom-select" data-min="50%" data-max="200%" data-decorator="%">
+            <input class="display" value="100%">
+            <div class="options">
+              <div>50%</div>
+              <div>75%</div>
+              <div>90%</div>
+              <div>100%</div>
+              <div>125%</div>
+              <div>150%</div>
+              <div>200%</div>
+            </div>
+            <div class="arrow-container">
+              <div class="arrow"></div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div id="text-style" class="custom-select">
+            <div class="display">Normal Text</div>
+            <div class="options">
+              <div>Normal Text</div>
+              <h1>Heading 1</h1>
+              <h2>Heading 2</h2>
+              <h3>Heading 3</h3>
+              <h4>Heading 4</h4>
+              <h5>Heading 5</h5>
+              <h6>Heading 6</h6>
+            </div>
+            <div class="arrow-container">
+              <div class="arrow"></div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div id="bold" class="button sticky"><b>B</b></div>
+          <div id="underline" class="button sticky"><span class="underline">U</span></div>
+          <div id="italics" class="button sticky"><i>I</i></div>
+          <div id="text-color" class="button-shape">A<div id="text-color-display"></div></div>
+          <!--Highlight color once I get a highlighter icon-->
+        </div>
+        <div class="select1">
+          <div id="align-left" class="button selected">
+            <div class="text-align-long"></div>
+            <div class="text-align-short"></div>
+            <div class="text-align-long"></div>
+            <div class="text-align-short"></div>
+          </div>
+          <div id="align-center" class="button">
+            <div class="text-align-long"></div>
+            <div class="text-align-short"></div>
+            <div class="text-align-long"></div>
+            <div class="text-align-short"></div>
+          </div>
+          <div id="align-right" class="button">
+            <div class="text-align-long"></div>
+            <div class="text-align-short"></div>
+            <div class="text-align-long"></div>
+            <div class="text-align-short"></div>
+          </div>
+          <div id="align-justify" class="button">
+            <div class="text-align-long"></div>
+            <div class="text-align-long"></div>
+            <div class="text-align-long"></div>
+            <div class="text-align-long"></div>
+          </div>
+        </div>
+      </div>
+      <div id="file-menu" class="tab-menu" data-for="menu" data-tabName="file">
+        
+      </div>
+      <div id="edit-menu" class="tab-menu" data-for="menu" data-tabName="edit">
+        
+      </div>
+      <div id="view-menu" class="tab-menu" data-for="menu" data-tabName="view">
+      
+      </div>
+      <div id="insert-menu" class="tab-menu" data-for="menu" data-tabName="insert">
+      
+      </div>
+      <div id="layout-menu" class="tab-menu" data-for="menu" data-tabName="layout">
+      
+      </div>
+      <div id="help-menu" class="tab-menu" data-for="menu" data-tabName="help">
+      
+      </div>
+    </header>
+    <div id="editor">
+      <div class="page" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true">
+        
+      </div>
     </div>
   </body>
 </html>
