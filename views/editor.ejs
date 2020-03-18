@@ -5,10 +5,8 @@
     <link rel="stylesheet" href="/css/editor.css">
     <link rel="stylesheet" href="/css/tabMenu.css">
     <script src="/js/JSPlus.js" type="application/javascript"></script>
+    <script src="/js/keyCodes.js" type="application/javascript" defer></script>
     <script src="/js/editor.js" type="application/javascript" defer></script>
-    <script src="/js/editorFunctions.js" type="application/javascript" defer></script>
-    <script src="/js/editorInterface.js" type="application/javascript" defer></script>
-    <script src="/js/editorKeycodes.js" type="application/javascript" defer></script>
   </head>
   <body>
     <div id="titleTest"></div>
@@ -16,7 +14,7 @@
       <div id="logo-container" class="neomorphism" data-option="">
         <img id="logo" src="../img/docs/docs.png">
       </div>
-      <input id="documentTitle" value="Untitled Document">
+      <input id="documentTitle" class="neomorphismHover" value="Untitled Document">
       <div id="menu" class="select1">
         <div class="tab selected" data-option="home"></div>
         <div class="tab" data-option="file"></div>
@@ -28,9 +26,11 @@
       </div>
       <div id="home-menu" class="tab-menu open" data-for="menu" data-tabName="home">
         <div>
+          <!-- replace all of these with actual images -->
           <div id="undo" class="button">&#8617;</div>
           <div id="redo" class="button">&#8618;</div>
           <div id="print" class="button">&#128438;</div>
+          <!-- add save icon -->
         </div>
         <div>
           <div id="zoom" class="custom-select" data-min="50%" data-max="200%" data-decorator="%">
@@ -67,9 +67,53 @@
           </div>
         </div>
         <div>
-          <div id="bold" class="button sticky"><b>B</b></div>
-          <div id="underline" class="button sticky"><span class="underline">U</span></div>
-          <div id="italics" class="button sticky"><i>I</i></div>
+          <div id="font" class="custom-select">
+            <div class="display">Times New Roman</div>
+            <div class="options">
+              <div style="font-family:Arial;">Arial</div>
+              <div style="font-family:Calibri;">Calibri</div>
+              <div style="font-family:'Comic Sans MS';">Comic Sans MS</div>
+              <div style="font-family:Courier;">Courier</div>
+              <div style="font-family:'Courier New';">Courier New</div>
+              <div style="font-family:Helvetica;">Helvetica</div>
+              <div style="font-family:Roboto;">Roboto</div>
+              <div style="font-family:'Times New Roman';">Times New Roman</div>
+            </div>
+            <div class="arrow-container">
+              <div class="arrow"></div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div id="font-size" class="custom-select" data-min="1" data-max="400">
+            <input class="display" value="12">
+            <div class="options">
+              <div>8</div>
+              <div>9</div>
+              <div>10</div>
+              <div>11</div>
+              <div>12</div>
+              <div>14</div>
+              <div>16</div>
+              <div>18</div>
+              <div>20</div>
+              <div>24</div>
+              <div>30</div>
+              <div>36</div>
+              <div>48</div>
+              <div>60</div>
+              <div>72</div>
+              <div>96</div>
+            </div>
+            <div class="arrow-container">
+              <div class="arrow"></div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <b id="bold" class="button sticky">B</b>
+          <div id="underline" class="button sticky underline">U</div>
+          <i id="italics" class="button sticky">I</i>
           <div id="text-color" class="button-shape">A<div id="text-color-display"></div></div>
           <!--Highlight color once I get a highlighter icon-->
         </div>

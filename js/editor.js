@@ -78,6 +78,7 @@ for (let select of Array.from(document.getElementsByClassName("custom-select")))
   document.addEventListener("click", event => {
     if (!select.contains(event.target)) close();
   });
+  document.addEventListener("blur", close);
   for (let option of Array.from(select.getElementsByClassName("options")[0].children)) {
     option.addEventListener("click", () => {
       if (textSelect) display.value = option.innerHTML;
@@ -119,3 +120,81 @@ for (let select of Array.from(document.getElementsByClassName("custom-select")))
     select.value = display.innerHTML;
   }
 }
+
+function formatSelection (formatElement) {
+  const selection = window.getSelection();
+  for (let i = 0; i < selection.rangeCount; i++) {
+    const selector = formatElement.match(/(?:^|[#\.\[])[^#\.\[]+/g);
+    const styledElement = document.createElement(/[#\.\[]/.test(selector[0].charAt(0)) ? "div" : selector[0]);
+    for (let rule of selector) {
+      switch (rule.charAt(0)) {
+        case "#":
+          styledElement.id = rule.substring(1);
+          break;
+        case ".":
+          styledElement.classList.add(rule.substring(1));
+          break;
+        case "[":
+          const attr = rule.substring(1, rule.length - 1).split("=");
+          styledElement.setAttribute(attr[0], attr[1].substring(1, attr[1].length - 1));
+      }
+    }
+    selection.getRangeAt(i).surroundContents(styledElement);
+  }
+}
+
+function addFunc (element, key, callback) {
+  if (typeof callback === "string") {
+    const command = callback;
+    callback = () => { document.execCommand(command); };
+  }
+  if (element !== null) {
+    if (typeof element === "string") element = document.getElementById(element);
+    if (element.tagName === "INPUT" || element.classList.contains("custom-select")) element.addEventListener("change", callback);
+    else element.addEventListener("click", callback);
+    if (element.classList.contains("sticky")) {
+      // do stuff
+    }
+  }
+  if (key !== null) {
+    if (typeof key === "string") key = { key: keyCodes[key] };
+    else if (typeof key === "number") key = { key };
+    else if (typeof key.key === "string") key.key = keyCodes[key.key];
+    key.ctrl = !(key.ctrl === false || false);
+    key.alt = key.alt || false;
+    key.shift = key.shift || false;
+    doc.addEventListener("keydown", event => {
+      if (key.key === event.keyCode && key.ctrl === event.ctrlKey && key.alt === event.altKey && key.shift === event.shiftKey) {
+        event.preventDefault();
+        callback();
+      }
+    });
+  }
+}
+
+addFunc("undo", "z", "undo");
+addFunc("redo", "r", "redo");
+addFunc("print", "p", () => print()); // fix margins
+
+addFunc("zoom", null, function () { doc.style.setProperty("transform", `scale(${parseInt(this.value) / 100})`); });// no margin bottom
+
+// normal text / headings required doing/undoing
+
+addFunc("font", null, function () { document.execCommand("fontName", false, `'${this.value}'`); });
+
+// font size must be done manually
+
+addFunc("bold", "b", "bold");
+addFunc("italics", "i", "italic");
+addFunc("underline", "u", "underline");
+
+addFunc("align-left", { key: "l", shift: true }, "justifyLeft");
+addFunc("align-center", { key: "e", shift: true }, "justifyCenter");
+addFunc("align-right", { key: "r", shift: true }, "justifyRight");
+addFunc("align-justify", { key: "j", shift: true }, "justifyFull");
+
+addFunc(null, { key: "5", ctrl: false, shift: true, alt: true }, "strikeThrough");
+addFunc(null, "period", "superscript");
+addFunc(null, "comma", "subscript");
+addFunc(null, "backslash", "removeFormat");
+
