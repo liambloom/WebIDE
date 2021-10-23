@@ -7,10 +7,11 @@ app.listen(process.env.PORT || 8080); // This doesn't need to go at the end in m
 app.set("view engine", "ejs");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-/*app.use((req, res, next) => {
-  req.fullUrl = new URL(`${req.protocol}://${req.get("host")}${req.originalUrl}`);
-  next();
-});*/
+app.use((req, res, next) => {
+  const now = new Date();
+  if (now.getMonth() === 3 && now.getDate() === 1) res.redirect("https://youtu.be/dQw4w9WgXcQ");
+  else next();
+});
 
 const main = express.Router();
 const api = express.Router();
